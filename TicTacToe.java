@@ -37,10 +37,15 @@ public class TicTacToe {
             System.out.println((isPlayerOne ? player1: player2) + ", it is your turn!");
             int row = getMove(scan, true);
             int col = getMove(scan, false);
-            board.makeMove(row - 1, col - 1, (isPlayerOne ? 'X': 'O'));
+            boolean win = board.makeMove(row - 1, col - 1, (isPlayerOne ? 'X': 'O'));
             board.printBoard();
             gameOver = false;
             isPlayerOne = (!isPlayerOne);
+            if(win == true){
+                System.out.println("You have won player " + (isPlayerOne ? player1: player2) + "!");
+                gameOver = true;
+                
+            }
             
         }
         
