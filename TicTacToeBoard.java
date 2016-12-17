@@ -6,7 +6,7 @@
 public class TicTacToeBoard {
     
     private static final int squareSize = 2;
-    private final int rows;
+    public final int rows;
     private char[][] board;
 
     /**
@@ -23,6 +23,7 @@ public class TicTacToeBoard {
         b.printBoard();
         System.out.println(b.makeMove(2, 2, 'X'));
         b.printBoard();
+        System.out.println("character at 1,1: \"" + b.getCharacter(1,1) + "\"");
         
     }
 
@@ -96,7 +97,7 @@ public class TicTacToeBoard {
     }
 
     /**
-     * Puts the character at the specificed row and column
+     * Puts the character at the specified row and column
      * @param row the row to put the value into
      * @param column the column to put the value into
      * @param c the character to put at the specified row and column

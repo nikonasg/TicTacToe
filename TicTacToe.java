@@ -35,13 +35,21 @@ public class TicTacToe {
         
         while(!gameOver){
             System.out.println((isPlayerOne ? player1: player2) + ", it is your turn!");
-            int row = getMove(scan, true);
-            int col = getMove(scan, false);
+            int row = getMove(scan, true, board);
+            int col = getMove(scan, false, board);
+            char character = board.getCharacter(row - 1,  col - 1);
+            while(character != ' '){
+                System.out.println("hey you," + (isPlayerOne ? player1: player2)+", that space is already takened. ask again or the diabetes will set in. P.S. suns like hepititas");
+                row = getMove(scan, true, board);
+                col = getMove(scan, false, board);
+                character = board.getCharacter(row - 1, col - 1);
+            }
             boolean win = board.makeMove(row - 1, col - 1, (isPlayerOne ? 'X': 'O'));
             board.printBoard();
             gameOver = false;
             isPlayerOne = (!isPlayerOne);
             if(win == true){
+                isPlayerOne = (!isPlayerOne);
                 System.out.println("You have won player " + (isPlayerOne ? player1: player2) + "!");
                 gameOver = true;
                 
@@ -52,19 +60,17 @@ public class TicTacToe {
     }
     
     //If askForRow is true ask for the row, ask for the column otherwise
-    static int getMove(Scanner scan, boolean askForRow) {        
-        if(askForRow == true){
-            System.out.println("Enter row");
-            int move = scan.nextInt();
+    static int getMove(Scanner scan, boolean askForRow, TicTacToeBoard board){
+        System.out.println("Enter the " + (askForRow ? "row": "column"));
+        int move = scan.nextInt();
+        scan.nextLine();
+        while(move < 0 || move > board.rows){
+            System.out.println("Dat numero is outa the bounds. ask again or the diabetes will set in. P.S. suns like hepititas");
+            System.out.println("Enter the " + (askForRow ? "row": "column"));
+            move = scan.nextInt();
             scan.nextLine();
-            return move;
         }
-        else{
-            System.out.println("Enter colomn");
-            int move = scan.nextInt();
-            scan.nextLine();
-            return move;
-        }
+        return move;
     }
 
 
