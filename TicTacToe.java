@@ -33,7 +33,7 @@ public class TicTacToe {
         //That info is going to correspond to 'X' and 'O'
         boolean isPlayerOne = true;
         int turn = 0;
-        while(!gameOver && turn < 9){
+        while(!gameOver && turn < board.rows * board.rows){
             System.out.println((isPlayerOne ? player1: player2) + ", it is your turn!");
             int row = getMove(scan, true, board);
             int col = getMove(scan, false, board);
@@ -57,7 +57,7 @@ public class TicTacToe {
             turn ++;
             
         }
-        if (!gameOver && turn < 10){
+        if (!gameOver && turn < board.rows * board.rows + 1){
             System.out.println("It's a tie player " + player1 + " and player " + player2 +"!");
         }
         
